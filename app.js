@@ -8,10 +8,8 @@ async function getWeatherData(city) {
         let current = response.current;
         let forecast = response.forecast;
         let sevenDaysForecast = (forecast.forecastday[0].hour).slice(0, 7);
-        console.log(sevenDaysForecast);
         let data = new getData(current, forecast, sevenDaysForecast);
-        console.log(data);
-        // displayData(data);
+        displayData(data);
     } catch (err) {
         alert("Something went wrong, please enter valid input", err);
     }
@@ -49,11 +47,32 @@ function getData(current, forecast, sevenDaysForecast) {
 }
 
 function displayData(obj) {
-    console.log('Current Temperature is ', obj.cTemp, '°c');
-    console.log('Current Weather Status: ', obj.cWeather);
-    console.log('Present Humidity is ', obj.cHumidity);
-    console.log('It Feels like', obj.cFeelsLike, '°c');
-    console.log('Tomorrow the weather may be: ', obj.fWeather);
-    console.log('Tomorrow the humidity may be', obj.fHumidity);
-    console.log('Tomorrow average temperature may be', obj.fTemp, '°c');
+    // current
+    document.querySelector('.curr-weather').textContent = obj.cWeather;
+    document.querySelector('.curr-icon').src = `https://${obj.cIcon}`;
+    document.querySelector('.curr-tmp').textContent = obj.cTemp, '°c';
+    document.querySelector('.curr-feels-like').textContent = obj.cFeelsLike, '°c';
+    document.querySelector('.curr-humidity').textContent = obj.cHumidity;
+
+    // forecast
+    document.querySelector('.for-weather').textContent = obj.fWeather;
+    document.querySelector('.for-icon').src = `https://${obj.fIcon}`;
+    document.querySelector('.for-tmp').textContent = obj.fTemp, '°c';
+    document.querySelector('.for-humidity').textContent = obj.fHumidity;
 }
+
+function DOM() {
+    document.querySelector('.show8data').addEventListener('click', () => {
+        document.querySelector('.seven-days').style.display = 'block';
+    });
+
+    document.querySelector('#searchBtn').addEventListener('click', () => {
+        const location = document.querySelector('.location').value;
+        document.querySelector('.client-location').textContent = location.toUpperCase();
+        console.log(location);
+        getWeatherData(location);
+        document.querySelector('.location').value = '';
+    });
+}
+
+DOM();
