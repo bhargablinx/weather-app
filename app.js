@@ -45,6 +45,8 @@ function getData(current, forecast, sevenDaysForecast) {
     this.day6Icon = (sevenDaysForecast[5].condition.icon).substring(2);
     this.day7Weather = sevenDaysForecast[6].condition.text;
     this.day7Icon = (sevenDaysForecast[6].condition.icon).substring(2);
+    this.day8Weather = sevenDaysForecast[6].condition.text;
+    this.day8Icon = (sevenDaysForecast[6].condition.icon).substring(2);
 }
 
 function displayData(obj) {
@@ -60,6 +62,9 @@ function displayData(obj) {
     document.querySelector('.for-icon').src = `https://${obj.fIcon}`;
     document.querySelector('.for-tmp').textContent = obj.fTemp, '°c';
     document.querySelector('.for-humidity').textContent = obj.fHumidity;
+
+    // data for 8 days
+    showDataFor8Days(obj);
 }
 
 function DOM() {
@@ -81,5 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.client-location').textContent = city.toUpperCase();
     getWeatherData(city);
 })
+
+function showDataFor8Days(obj) {
+    document.querySelector('.weather1').textContent = obj.day1Weather;
+    document.querySelector('.icon1').src = `https://${obj.day1Icon}`;
+    document.querySelector('.weather2').textContent = obj.day2Weather;
+    document.querySelector('.icon2').src = `https://${obj.day2Icon}`;
+    document.querySelector('.weather3').textContent = obj.day3Weather;
+    document.querySelector('.icon3').src = `https://${obj.day3Icon}`;
+    document.querySelector('.weather4').textContent = obj.day4Weather;
+    document.querySelector('.icon4').src = `https://${obj.day4Icon}`;
+    document.querySelector('.weather5').textContent = obj.day5Weather;
+    document.querySelector('.icon5').src = `https://${obj.day5Icon}`;
+    document.querySelector('.weather6').textContent = obj.day6Weather;
+    document.querySelector('.icon6').src = `https://${obj.day6Icon}`;
+    document.querySelector('.weather7').textContent = obj.day7Weather;
+    document.querySelector('.icon7').src = `https://${obj.day7Icon}`;
+    document.querySelector('.weather8').textContent = obj.day8Weather;
+    document.querySelector('.icon8').src = `https://${obj.day8Icon}`;
+}
 
 DOM();
