@@ -12,6 +12,7 @@ async function getWeatherData(city) {
         displayData(data);
     } catch (err) {
         alert("Something went wrong, please enter valid input", err);
+        document.querySelector('.data-field').textContent = 'Try Again';
     }
 }
 
