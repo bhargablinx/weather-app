@@ -75,4 +75,10 @@ function DOM() {
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const city = prompt('Enter you current city name: ');
+    document.querySelector('.client-location').textContent = city.toUpperCase();
+    getWeatherData(city);
+})
+
 DOM();
