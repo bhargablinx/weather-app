@@ -28,17 +28,99 @@
         <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
     </section>
     <section class="data-field">
-        <div class="cell">
-            <label>Current Location: </label>
-            <div class="client-location">Kokrajhar</div>
+        <div class="container">
+            <div class="column">
+                <div class="cell">
+                    <label>Current Location: </label>
+                    <div class="client-location dta">Kokrajhar</div>
+                </div>
+                <div class="cell">
+                    <label>Current Weather: </label>
+                    <div class="weather-n-icon">
+                        <div class="curr-weather dta">Sunny</div>
+                        <div class="curr-icon"><img src="http://cdn.weatherapi.com/weather/64x64/day/353.png"></div>
+                    </div>
+                </div>
+                <div class="cell">
+                    <label>🌡️ Temperature</label>
+                    <div class="curr-tmp dta">25 &deg;c</div>
+                </div>
+                <div class="cell">
+                    <label id="feels"> Feels Like:</label>
+                    <div class="curr-feels-like dta">32 &deg;c</div>
+                </div>
+                <div class="cell">
+                    <label>🫧 Humidity</label>
+                    <div class="curr-humidity dta">78</div>
+                </div>
+            </div>
+            <div class="column forcast-column">
+                <div class="cell">
+                    <div class="dta">Forecast</div>
+                </div>
+                <div class="cell">
+                    <label>Probable Weather: </label>
+                    <div class="weather-n-icon">
+                        <div class="for-weather dta">Sunny</div>
+                        <div class="for-icon"><img src="http://cdn.weatherapi.com/weather/64x64/day/353.png"></div>
+                    </div>
+                </div>
+                <div class="cell">
+                    <label>Probable Avg Temperature</label>
+                    <div class="for-tmp dta">25 &deg;c</div>
+                </div>
+                <div class="cell">
+                    <label>Probable Humidity</label>
+                    <div class="for-humidity dta">78</div>
+                </div>
+            </div>
         </div>
-        <div class="cell">
-            <label>Current Weather: </label>
-            <div class="weather-n-icon">
-                <div class="curr-weather">Sunny</div>
-                <div class="curr-icon"><img src="http://cdn.weatherapi.com/weather/64x64/day/353.png"></div>
+        <button class="show8data">Show Data For 8 Days</button>
+    </section>
+    <section class="seven-days">
+        <div class="card-container">
+            <div class="card">
+                <div class="day">Day 1</div>
+                <div class="weather1">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon1">
+            </div>
+            <div class="card">
+                <div class="day">Day 2</div>
+                <div class="weather2">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon2">
+            </div>
+            <div class="card">
+                <div class="day">Day 3</div>
+                <div class="weather3">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon3">
+            </div>
+            <div class="card">
+                <div class="day">Day 4</div>
+                <div class="weather4">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon4">
+            </div>
+            <div class="card">
+                <div class="day">Day 5</div>
+                <div class="weather5">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon5">
+            </div>
+            <div class="card">
+                <div class="day">Day 6</div>
+                <div class="weather6">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon6">
+            </div>
+            <div class="card">
+                <div class="day">Day 7</div>
+                <div class="weather7">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon7">
+            </div>
+            <div class="card">
+                <div class="day">Day 8</div>
+                <div class="weather8">Rainy</div>
+                <img src="http://cdn.weatherapi.com/weather/64x64/day/353.png" class="icon8">
             </div>
         </div>
     </section>
+    <footer>Create by @bhargablinx</footer>
   </body>
 </html>

@@ -27,6 +27,7 @@ header {
 .title {
     cursor: pointer;
     font-size: 1.3rem;
+    font-weight: bolder;
 }
 
 .icons i {
@@ -59,7 +60,7 @@ header {
     padding: 25px 20vw;
 }
 
-.client-location, .curr-weather {
+.dta {
     font-size: 2rem;
     font-weight: bold;
 }
@@ -72,4 +73,64 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.container {
+    display: flex;
+}
+
+.column {
+    padding: 15px;
+    flex: 1;
+}
+
+.forcast-column {
+    margin-top: 30px;
+}
+
+.show8data {
+    margin-top: 25px;
+    cursor: pointer;
+    color: #f9fafb;
+    background-color: #1e293b;
+    padding: 7px 5px;
+    border-radius: 9px;
+}
+
+.card-container {
+    margin: 25px 20vw;
+    padding: 15px;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.card {
+    background-color: rgb(211, 211, 211);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.card .day {
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.seven-days {
+    display: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    margin: 0 20vw;
+    padding: 15px;
+    text-align: center;
+    color: #989898;
 }
