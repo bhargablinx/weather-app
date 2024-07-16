@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://kit.fontawesome.com/5593a2500e.js"
       crossorigin="anonymous"
     ></script>
     <script src="app.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Weather LookUp!</title>
-</head>
-<body>
-    <!-- <header>
-        <div class="title">Weather LookUp</div>
-        <div class="icons">
-            <i class="fa-brands fa-github"></i>
-            <i class="fa-brands fa-twitter"></i>
+  </head>
+  <body>
+    <header>
+      <div class="title">Weather LookUp</div>
+      <div class="icons">
+        <a href="https://github.com/bhargablinx" target="”_blank”"
+          ><i class="fa-brands fa-github"></i
+        ></a>
+        <a href="https://x.com/BhargabLinx" target="”_blank”"
+          ><i class="fa-brands fa-twitter"></i
+        ></a>
+      </div>
+    </header>
+    <section class="search_here">
+        <input type="text" placeholder="Search Here..." autocomplete="off">
+        <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+    </section>
+    <section class="data-field">
+        <div class="cell">
+            <label>Current Location: </label>
+            <div class="client-location">Kokrajhar</div>
         </div>
-    </header> -->
-</body>
+        <div class="cell">
+            <label>Current Weather: </label>
+            <div class="weather-n-icon">
+                <div class="curr-weather">Sunny</div>
+                <div class="curr-icon"><img src="http://cdn.weatherapi.com/weather/64x64/day/353.png"></div>
+            </div>
+        </div>
+    </section>
+  </body>
 </html>
