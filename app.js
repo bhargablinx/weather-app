@@ -19,47 +19,47 @@ async function getWeatherData(city) {
 function getData(current, forecast, sevenDaysForecast) {
     // Current
     this.cWeather = current.condition.text;
-    this.cIcon = (current.condition.icon).substring(2);
+    this.cIcon = `https:${current.condition.icon}`;
     this.cHumidity = current.humidity;
     this.cTemp = current.temp_c;
     this.cFeelsLike = current.feelslike_c;
 
     // forecast (average)
     this.fWeather = forecast.forecastday[0].day.condition.text;
-    this.fIcon = (forecast.forecastday[0].day.condition.icon).substring(2);
+    this.fIcon = `https:${forecast.forecastday[0].day.condition.icon}`; // Ensure HTTPS
     this.fHumidity = forecast.forecastday[0].day.avghumidity;
     this.fTemp = forecast.forecastday[0].day.avgtemp_c;
 
     // forecast (7 days)
     this.day1Weather = sevenDaysForecast[0].condition.text;
-    this.day1Icon = (sevenDaysForecast[0].condition.icon).substring(2);
+    this.day1Icon = `https:${sevenDaysForecast[0].condition.icon}`; // Ensure HTTPS
     this.day2Weather = sevenDaysForecast[1].condition.text;
-    this.day2Icon = (sevenDaysForecast[1].condition.icon).substring(2);
+    this.day2Icon = `https:${sevenDaysForecast[1].condition.icon}`; // Ensure HTTPS
     this.day3Weather = sevenDaysForecast[2].condition.text;
-    this.day3Icon = (sevenDaysForecast[2].condition.icon).substring(2);
+    this.day3Icon = `https:${sevenDaysForecast[2].condition.icon}`; // Ensure HTTPS
     this.day4Weather = sevenDaysForecast[3].condition.text;
-    this.day4Icon = (sevenDaysForecast[3].condition.icon).substring(2);
+    this.day4Icon = `https:${sevenDaysForecast[3].condition.icon}`; // Ensure HTTPS
     this.day5Weather = sevenDaysForecast[4].condition.text;
-    this.day5Icon = (sevenDaysForecast[4].condition.icon).substring(2);
+    this.day5Icon = `https:${sevenDaysForecast[4].condition.icon}`; // Ensure HTTPS
     this.day6Weather = sevenDaysForecast[5].condition.text;
-    this.day6Icon = (sevenDaysForecast[5].condition.icon).substring(2);
+    this.day6Icon = `https:${sevenDaysForecast[5].condition.icon}`; // Ensure HTTPS
     this.day7Weather = sevenDaysForecast[6].condition.text;
-    this.day7Icon = (sevenDaysForecast[6].condition.icon).substring(2);
+    this.day7Icon = `https:${sevenDaysForecast[6].condition.icon}`; // Ensure HTTPS
     this.day8Weather = sevenDaysForecast[6].condition.text;
-    this.day8Icon = (sevenDaysForecast[6].condition.icon).substring(2);
+    this.day8Icon = `https:${sevenDaysForecast[6].condition.icon}`; // Ensure HTTPS
 }
 
 function displayData(obj) {
     // current
     document.querySelector('.curr-weather').textContent = obj.cWeather;
-    document.querySelector('.curr-icon').src = `https://${obj.cIcon}`;
+    document.querySelector('.curr-icon').src = obj.cIcon;
     document.querySelector('.curr-tmp').textContent = obj.cTemp, '°c';
     document.querySelector('.curr-feels-like').textContent = obj.cFeelsLike, '°c';
     document.querySelector('.curr-humidity').textContent = obj.cHumidity;
 
     // forecast
     document.querySelector('.for-weather').textContent = obj.fWeather;
-    document.querySelector('.for-icon').src = `https://${obj.fIcon}`;
+    document.querySelector('.for-icon').src = obj.fIcon;
     document.querySelector('.for-tmp').textContent = obj.fTemp, '°c';
     document.querySelector('.for-humidity').textContent = obj.fHumidity;
 
@@ -89,21 +89,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showDataFor8Days(obj) {
     document.querySelector('.weather1').textContent = obj.day1Weather;
-    document.querySelector('.icon1').src = `https://${obj.day1Icon}`;
+    document.querySelector('.icon1').src = obj.day1Icon;
     document.querySelector('.weather2').textContent = obj.day2Weather;
-    document.querySelector('.icon2').src = `https://${obj.day2Icon}`;
+    document.querySelector('.icon2').src = obj.day2Icon;
     document.querySelector('.weather3').textContent = obj.day3Weather;
-    document.querySelector('.icon3').src = `https://${obj.day3Icon}`;
+    document.querySelector('.icon3').src = obj.day3Icon;
     document.querySelector('.weather4').textContent = obj.day4Weather;
-    document.querySelector('.icon4').src = `https://${obj.day4Icon}`;
+    document.querySelector('.icon4').src = obj.day4Icon;
     document.querySelector('.weather5').textContent = obj.day5Weather;
-    document.querySelector('.icon5').src = `https://${obj.day5Icon}`;
+    document.querySelector('.icon5').src = obj.day5Icon;
     document.querySelector('.weather6').textContent = obj.day6Weather;
-    document.querySelector('.icon6').src = `https://${obj.day6Icon}`;
+    document.querySelector('.icon6').src = obj.day6Icon;
     document.querySelector('.weather7').textContent = obj.day7Weather;
-    document.querySelector('.icon7').src = `https://${obj.day7Icon}`;
+    document.querySelector('.icon7').src = obj.day7Icon;
     document.querySelector('.weather8').textContent = obj.day8Weather;
-    document.querySelector('.icon8').src = `https://${obj.day8Icon}`;
+    document.querySelector('.icon8').src = obj.day8Icon;
 }
 
 DOM();
