@@ -2,7 +2,7 @@ const API_KEY = "445ce7a15f4d4a2ebf8110239241906";
 
 async function getWeatherData(city) {
     try {
-        const URL = `http://api.weatherapi.com/v1/forecast.json?q=${city}&key=${API_KEY}`
+        const URL = `https://api.weatherapi.com/v1/forecast.json?q=${city}&key=${API_KEY}`; // Changed to HTTPS
         let response = await fetch(URL);
         response = await response.json();
         let current = response.current;
