@@ -148,36 +148,61 @@ function getLongAndLat() {
     });
 }
 
-const searchInput = document.querySelector(".location");
+const locationInput = document.querySelector(".location");
 const suggestionsBox = document.querySelector(".suggestions");
 
-searchInput.addEventListener("input", async () => {
-    const query = searchInput.value.trim();
-    if (query.length < 2) {
-        suggestionsBox.innerHTML = "";
+locationInput.addEventListener("input", async () => {
+    const query = locationInput.value.trim();
+
+    if (query.length === 0) {
+        suggestionsBox.style.display = "none";
         return;
     }
 
+    const endpoint = `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`;
     try {
-        const url = `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`;
-        const res = await fetch(url);
-        const data = await res.json();
+        const response = await fetch(endpoint);
+        const data = await response.json();
+
+        if (data.length === 0) {
+            suggestionsBox.style.display = "none";
+            return;
+        }
 
         suggestionsBox.innerHTML = "";
-
         data.forEach((place) => {
             const li = document.createElement("li");
             li.textContent = `${place.name}, ${place.region}, ${place.country}`;
             li.addEventListener("click", () => {
-                searchInput.value = `${place.name}, ${place.region}, ${place.country}`;
-                suggestionsBox.innerHTML = "";
-                document.querySelector(".client-location").textContent =
-                    place.name.toUpperCase();
-                getWeatherData(searchInput.value);
+                locationInput.value = `${place.name}, ${place.region}, ${place.country}`;
+                suggestionsBox.style.display = "none";
+                triggerSearch();
             });
             suggestionsBox.appendChild(li);
         });
+        suggestionsBox.style.display = "block";
     } catch (err) {
-        console.error("Autocomplete error:", err);
+        console.error("Suggestion fetch error:", err);
+        suggestionsBox.style.display = "none";
+    }
+});
+
+function triggerSearch() {
+    const location = locationInput.value.trim();
+    if (!location) return;
+
+    document.querySelector(".client-location").textContent =
+        location.toUpperCase();
+    getWeatherData(location);
+    locationInput.value = "";
+    suggestionsBox.style.display = "none";
+}
+
+document.querySelector("#searchBtn").addEventListener("click", triggerSearch);
+
+locationInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        triggerSearch();
     }
 });
