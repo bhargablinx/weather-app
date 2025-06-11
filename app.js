@@ -7,12 +7,12 @@ async function getWeatherData(city) {
         response = await response.json();
         let current = response.current;
         let forecast = response.forecast;
-        let sevenDaysForecast = (forecast.forecastday[0].hour).slice(0, 7);
+        let sevenDaysForecast = forecast.forecastday[0].hour.slice(0, 7);
         let data = new getData(current, forecast, sevenDaysForecast);
         displayData(data);
     } catch (err) {
-        alert("Something went wrong, please enter valid input", err);
-        document.querySelector('.data-field').textContent = 'Try Again';
+        console.log("Something went wrong, please enter valid input", err);
+        document.querySelector(".data-field").textContent = "Try Again";
     }
 }
 
@@ -51,59 +51,83 @@ function getData(current, forecast, sevenDaysForecast) {
 
 function displayData(obj) {
     // current
-    document.querySelector('.curr-weather').textContent = obj.cWeather;
-    document.querySelector('.curr-icon').src = obj.cIcon;
-    document.querySelector('.curr-tmp').textContent = obj.cTemp, '°c';
-    document.querySelector('.curr-feels-like').textContent = obj.cFeelsLike, '°c';
-    document.querySelector('.curr-humidity').textContent = obj.cHumidity;
+    document.querySelector(".curr-weather").textContent = obj.cWeather;
+    document.querySelector(".curr-icon").src = obj.cIcon;
+    (document.querySelector(".curr-tmp").textContent = obj.cTemp), "°c";
+    (document.querySelector(".curr-feels-like").textContent = obj.cFeelsLike),
+        "°c";
+    document.querySelector(".curr-humidity").textContent = obj.cHumidity;
 
     // forecast
-    document.querySelector('.for-weather').textContent = obj.fWeather;
-    document.querySelector('.for-icon').src = obj.fIcon;
-    document.querySelector('.for-tmp').textContent = obj.fTemp, '°c';
-    document.querySelector('.for-humidity').textContent = obj.fHumidity;
+    document.querySelector(".for-weather").textContent = obj.fWeather;
+    document.querySelector(".for-icon").src = obj.fIcon;
+    (document.querySelector(".for-tmp").textContent = obj.fTemp), "°c";
+    document.querySelector(".for-humidity").textContent = obj.fHumidity;
 
     // data for 8 days
     showDataFor8Days(obj);
 }
 
 function DOM() {
-    document.querySelector('.show8data').addEventListener('click', () => {
-        document.querySelector('.seven-days').style.display = 'block';
+    document.querySelector(".show8data").addEventListener("click", () => {
+        document.querySelector(".seven-days").style.display = "block";
     });
 
-    document.querySelector('#searchBtn').addEventListener('click', () => {
-        const location = document.querySelector('.location').value;
-        document.querySelector('.client-location').textContent = location.toUpperCase();
+    document.querySelector("#searchBtn").addEventListener("click", () => {
+        const location = document.querySelector(".location").value;
+        document.querySelector(".client-location").textContent =
+            location.toUpperCase();
         console.log(location);
         getWeatherData(location);
-        document.querySelector('.location').value = '';
+        document.querySelector(".location").value = "";
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const city = prompt('Enter you current city name: ');
-    document.querySelector('.client-location').textContent = city.toUpperCase();
-    getWeatherData(city);
-})
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const coords = await getLongAndLat();
+        document.querySelector(".client-location").textContent =
+            "Your Location";
+        getWeatherData(coords);
+    } catch (err) {
+        document.querySelector(".data-field").textContent =
+            "Location access denied.";
+    }
+});
 
 function showDataFor8Days(obj) {
-    document.querySelector('.weather1').textContent = obj.day1Weather;
-    document.querySelector('.icon1').src = obj.day1Icon;
-    document.querySelector('.weather2').textContent = obj.day2Weather;
-    document.querySelector('.icon2').src = obj.day2Icon;
-    document.querySelector('.weather3').textContent = obj.day3Weather;
-    document.querySelector('.icon3').src = obj.day3Icon;
-    document.querySelector('.weather4').textContent = obj.day4Weather;
-    document.querySelector('.icon4').src = obj.day4Icon;
-    document.querySelector('.weather5').textContent = obj.day5Weather;
-    document.querySelector('.icon5').src = obj.day5Icon;
-    document.querySelector('.weather6').textContent = obj.day6Weather;
-    document.querySelector('.icon6').src = obj.day6Icon;
-    document.querySelector('.weather7').textContent = obj.day7Weather;
-    document.querySelector('.icon7').src = obj.day7Icon;
-    document.querySelector('.weather8').textContent = obj.day8Weather;
-    document.querySelector('.icon8').src = obj.day8Icon;
+    document.querySelector(".weather1").textContent = obj.day1Weather;
+    document.querySelector(".icon1").src = obj.day1Icon;
+    document.querySelector(".weather2").textContent = obj.day2Weather;
+    document.querySelector(".icon2").src = obj.day2Icon;
+    document.querySelector(".weather3").textContent = obj.day3Weather;
+    document.querySelector(".icon3").src = obj.day3Icon;
+    document.querySelector(".weather4").textContent = obj.day4Weather;
+    document.querySelector(".icon4").src = obj.day4Icon;
+    document.querySelector(".weather5").textContent = obj.day5Weather;
+    document.querySelector(".icon5").src = obj.day5Icon;
+    document.querySelector(".weather6").textContent = obj.day6Weather;
+    document.querySelector(".icon6").src = obj.day6Icon;
+    document.querySelector(".weather7").textContent = obj.day7Weather;
+    document.querySelector(".icon7").src = obj.day7Icon;
+    document.querySelector(".weather8").textContent = obj.day8Weather;
+    document.querySelector(".icon8").src = obj.day8Icon;
 }
 
 DOM();
+
+function getLongAndLat() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                resolve(`${latitude},${longitude}`);
+            },
+            (error) => {
+                console.error("Error getting location:", error.message);
+                reject(error);
+            }
+        );
+    });
+}
