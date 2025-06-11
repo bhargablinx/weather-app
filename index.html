@@ -28,16 +28,23 @@
             </div>
         </header>
         <section class="search_here">
-            <input
-                type="text"
-                placeholder="Search Here..."
-                autocomplete="off"
-                class="location"
-            />
+            <div
+                class="search_wrapper"
+                style="position: relative; width: 250px"
+            >
+                <input
+                    type="text"
+                    placeholder="Search Here..."
+                    autocomplete="off"
+                    class="location"
+                />
+                <ul class="suggestions"></ul>
+            </div>
             <div class="icon" id="searchBtn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </section>
+
         <section class="data-field">
             <div class="container">
                 <div class="column">

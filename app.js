@@ -147,3 +147,37 @@ function getLongAndLat() {
         );
     });
 }
+
+const searchInput = document.querySelector(".location");
+const suggestionsBox = document.querySelector(".suggestions");
+
+searchInput.addEventListener("input", async () => {
+    const query = searchInput.value.trim();
+    if (query.length < 2) {
+        suggestionsBox.innerHTML = "";
+        return;
+    }
+
+    try {
+        const url = `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        suggestionsBox.innerHTML = "";
+
+        data.forEach((place) => {
+            const li = document.createElement("li");
+            li.textContent = `${place.name}, ${place.region}, ${place.country}`;
+            li.addEventListener("click", () => {
+                searchInput.value = `${place.name}, ${place.region}, ${place.country}`;
+                suggestionsBox.innerHTML = "";
+                document.querySelector(".client-location").textContent =
+                    place.name.toUpperCase();
+                getWeatherData(searchInput.value);
+            });
+            suggestionsBox.appendChild(li);
+        });
+    } catch (err) {
+        console.error("Autocomplete error:", err);
+    }
+});
