@@ -1,18 +1,30 @@
 const API_KEY = "445ce7a15f4d4a2ebf8110239241906";
 
 async function getWeatherData(city) {
+    document.querySelector(".loading-screen").style.display = "flex"; // Show loading
     try {
-        const URL = `https://api.weatherapi.com/v1/forecast.json?q=${city}&key=${API_KEY}`; // Changed to HTTPS
+        const URL = `https://api.weatherapi.com/v1/forecast.json?q=${city}&key=${API_KEY}`;
         let response = await fetch(URL);
+
+        if (!response.ok) {
+            throw new Error("Location not found");
+        }
+
         response = await response.json();
+
         let current = response.current;
         let forecast = response.forecast;
         let sevenDaysForecast = forecast.forecastday[0].hour.slice(0, 7);
         let data = new getData(current, forecast, sevenDaysForecast);
         displayData(data);
     } catch (err) {
-        console.log("Something went wrong, please enter valid input", err);
-        document.querySelector(".data-field").textContent = "Try Again";
+        console.log("Error:", err);
+        document.querySelector(
+            ".data-field"
+        ).innerHTML = `<p style="color:red; font-weight:bold;">❌ Location not found. Please try again.</p>`;
+        document.querySelector(".seven-days").style.display = "none";
+    } finally {
+        document.querySelector(".loading-screen").style.display = "none"; // Hide loading
     }
 }
 
@@ -74,10 +86,12 @@ function DOM() {
     });
 
     document.querySelector("#searchBtn").addEventListener("click", () => {
-        const location = document.querySelector(".location").value;
+        const location = document.querySelector(".location").value.trim();
+
+        if (location === "") return;
+
         document.querySelector(".client-location").textContent =
             location.toUpperCase();
-        console.log(location);
         getWeatherData(location);
         document.querySelector(".location").value = "";
     });
@@ -88,10 +102,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         const coords = await getLongAndLat();
         document.querySelector(".client-location").textContent =
             "Your Location";
-        getWeatherData(coords);
+        await getWeatherData(coords);
     } catch (err) {
         document.querySelector(".data-field").textContent =
             "Location access denied.";
+    } finally {
+        document.querySelector(".loading-screen").style.display = "none";
     }
 });
 

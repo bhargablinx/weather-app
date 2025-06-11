@@ -1,126 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/5593a2500e.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="app.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
-    <title>Weather LookUp!</title>
-  </head>
-  <body>
-    <header>
-      <div class="title">Weather LookUp</div>
-      <div class="icons">
-        <a href="https://github.com/bhargablinx" target="”_blank”"
-          ><i class="fa-brands fa-github"></i
-        ></a>
-        <a href="https://x.com/BhargabLinx" target="”_blank”"
-          ><i class="fa-brands fa-twitter"></i
-        ></a>
-      </div>
-    </header>
-    <section class="search_here">
-        <input type="text" placeholder="Search Here..." autocomplete="off" class="location">
-        <div class="icon" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></div>
-    </section>
-    <section class="data-field">
-        <div class="container">
-            <div class="column">
-                <div class="cell">
-                    <label>Current Location: </label>
-                    <div class="client-location dta"></div>
-                </div>
-                <div class="cell">
-                    <label>Current Weather: </label>
-                    <div class="weather-n-icon">
-                        <div class="curr-weather dta"></div>
-                        <img src="" class="curr-icon">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+            src="https://kit.fontawesome.com/5593a2500e.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="app.js" defer></script>
+        <link rel="stylesheet" href="style.css" />
+        <title>Weather LookUp!</title>
+    </head>
+    <body>
+        <div class="loading-screen">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+        <header>
+            <div class="title">Weather LookUp</div>
+            <div class="icons">
+                <a href="https://github.com/bhargablinx" target="”_blank”"
+                    ><i class="fa-brands fa-github"></i
+                ></a>
+                <a href="https://x.com/BhargabLinx" target="”_blank”"
+                    ><i class="fa-brands fa-twitter"></i
+                ></a>
+            </div>
+        </header>
+        <section class="search_here">
+            <input
+                type="text"
+                placeholder="Search Here..."
+                autocomplete="off"
+                class="location"
+            />
+            <div class="icon" id="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </section>
+        <section class="data-field">
+            <div class="container">
+                <div class="column">
+                    <div class="cell">
+                        <label>Current Location: </label>
+                        <div class="client-location dta"></div>
+                    </div>
+                    <div class="cell">
+                        <label>Current Weather: </label>
+                        <div class="weather-n-icon">
+                            <div class="curr-weather dta"></div>
+                            <img src="" class="curr-icon" />
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <label>🌡️ Temperature</label>
+                        <div class="curr-tmp dta"></div>
+                    </div>
+                    <div class="cell">
+                        <label id="feels"> Feels Like:</label>
+                        <div class="curr-feels-like dta"></div>
+                    </div>
+                    <div class="cell">
+                        <label>🫧 Humidity</label>
+                        <div class="curr-humidity dta"></div>
                     </div>
                 </div>
-                <div class="cell">
-                    <label>🌡️ Temperature</label>
-                    <div class="curr-tmp dta"></div>
-                </div>
-                <div class="cell">
-                    <label id="feels"> Feels Like:</label>
-                    <div class="curr-feels-like dta"></div>
-                </div>
-                <div class="cell">
-                    <label>🫧 Humidity</label>
-                    <div class="curr-humidity dta"></div>
-                </div>
-            </div>
-            <div class="column forcast-column">
-                <div class="cell">
-                    <div class="dta">Forecast</div>
-                </div>
-                <div class="cell">
-                    <label>Probable Weather: </label>
-                    <div class="weather-n-icon">
-                        <div class="for-weather dta"></div>
-                        <img src="" class="for-icon">
+                <div class="column forcast-column">
+                    <div class="cell">
+                        <div class="dta">Forecast</div>
+                    </div>
+                    <div class="cell">
+                        <label>Probable Weather: </label>
+                        <div class="weather-n-icon">
+                            <div class="for-weather dta"></div>
+                            <img src="" class="for-icon" />
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <label>Probable Avg Temperature</label>
+                        <div class="for-tmp dta"></div>
+                    </div>
+                    <div class="cell">
+                        <label>Probable Humidity</label>
+                        <div class="for-humidity dta"></div>
                     </div>
                 </div>
-                <div class="cell">
-                    <label>Probable Avg Temperature</label>
-                    <div class="for-tmp dta"></div>
+            </div>
+            <button class="show8data">Show Data For 8 Days</button>
+        </section>
+        <section class="seven-days">
+            <div class="card-container">
+                <div class="card">
+                    <div class="day">Day 1</div>
+                    <div class="weather1"></div>
+                    <img src=" " class="icon1" />
                 </div>
-                <div class="cell">
-                    <label>Probable Humidity</label>
-                    <div class="for-humidity dta"></div>
+                <div class="card">
+                    <div class="day">Day 2</div>
+                    <div class="weather2"></div>
+                    <img src=" " class="icon2" />
+                </div>
+                <div class="card">
+                    <div class="day">Day 3</div>
+                    <div class="weather3"></div>
+                    <img src=" " class="icon3" />
+                </div>
+                <div class="card">
+                    <div class="day">Day 4</div>
+                    <div class="weather4"></div>
+                    <img src=" " class="icon4" />
+                </div>
+                <div class="card">
+                    <div class="day">Day 5</div>
+                    <div class="weather5"></div>
+                    <img src=" " class="icon5" />
+                </div>
+                <div class="card">
+                    <div class="day">Day 6</div>
+                    <div class="weather6"></div>
+                    <img src=" " class="icon6" />
+                </div>
+                <div class="card">
+                    <div class="day">Day 7</div>
+                    <div class="weather7"></div>
+                    <img src=" " class="icon7" />
+                </div>
+                <div class="card">
+                    <div class="day">Day 8</div>
+                    <div class="weather8"></div>
+                    <img src=" " class="icon8" />
                 </div>
             </div>
-        </div>
-        <button class="show8data">Show Data For 8 Days</button>
-    </section>
-    <section class="seven-days">
-        <div class="card-container">
-            <div class="card">
-                <div class="day">Day 1</div>
-                <div class="weather1"></div>
-                <img src=" " class="icon1">
-            </div>
-            <div class="card">
-                <div class="day">Day 2</div>
-                <div class="weather2"> </div>
-                <img src=" " class="icon2">
-            </div>
-            <div class="card">
-                <div class="day">Day 3</div>
-                <div class="weather3"> </div>
-                <img src=" " class="icon3">
-            </div>
-            <div class="card">
-                <div class="day">Day 4</div>
-                <div class="weather4"> </div>
-                <img src=" " class="icon4">
-            </div>
-            <div class="card">
-                <div class="day">Day 5</div>
-                <div class="weather5"> </div>
-                <img src=" " class="icon5">
-            </div>
-            <div class="card">
-                <div class="day">Day 6</div>
-                <div class="weather6"> </div>
-                <img src=" " class="icon6">
-            </div>
-            <div class="card">
-                <div class="day">Day 7</div>
-                <div class="weather7"> </div>
-                <img src=" " class="icon7">
-            </div>
-            <div class="card">
-                <div class="day">Day 8</div>
-                <div class="weather8"> </div>
-                <img src=" " class="icon8">
-            </div>
-        </div>
-    </section>
-    <!-- <footer>Create by @bhargablinx</footer> -->
-  </body>
+        </section>
+        <!-- <footer>Create by @bhargablinx</footer> -->
+    </body>
 </html>

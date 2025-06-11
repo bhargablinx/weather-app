@@ -129,18 +129,19 @@ header {
 }
 
 @media (max-width: 1300px) {
-    header, .data-field {
+    header,
+    .data-field {
         padding: 0 10vw;
     }
 
     .card-container {
         margin: 25px 10vw;
-        
     }
 }
 
 @media (max-width: 1000px) {
-    header, .data-field {
+    header,
+    .data-field {
         padding: 0 5vw;
     }
 
@@ -186,5 +187,34 @@ header {
 @media (max-width: 300px) {
     .icons {
         display: none;
+    }
+}
+
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    background: #f3f4f6;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #d1d5db;
+    border-top: 6px solid #1f2937;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
