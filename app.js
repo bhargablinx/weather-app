@@ -206,3 +206,18 @@ locationInput.addEventListener("keydown", (e) => {
         triggerSearch();
     }
 });
+
+const toggleBtn = document.getElementById("mode-toggle");
+const body = document.body;
+
+toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    // Optional: toggle icon between moon and sun
+    if (body.classList.contains("dark-mode")) {
+        toggleBtn.classList.remove("fa-moon");
+        toggleBtn.classList.add("fa-sun");
+    } else {
+        toggleBtn.classList.remove("fa-sun");
+        toggleBtn.classList.add("fa-moon");
+    }
+});
